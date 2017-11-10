@@ -1,3 +1,5 @@
+using FluentAPI.EntityConfigurations;
+
 namespace FluentAPI
 {
     using System;
@@ -18,7 +20,11 @@ namespace FluentAPI
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Course>()
+            modelBuilder.Configurations.Add(new AuthorConfiguration());
+            modelBuilder.Configurations.Add(new CourseConfiguration());
+            /*
+              
+             modelBuilder.Entity<Course>()
                 .Property(c => c.Id)
                 .HasColumnOrder(1);
 
@@ -47,6 +53,8 @@ namespace FluentAPI
             modelBuilder.Entity<Course>()
                 .HasRequired(e => e.Cover)
                 .WithRequiredPrincipal(e => e.Course);
+                
+             */
         }
     }
 }
